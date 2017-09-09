@@ -1,5 +1,7 @@
 package org.jbestie.sqlexp.dao;
 
+import java.util.List;
+
 import org.jbestie.sqlexp.model.QueryResult;
 
 public interface SqlExpDao {
@@ -32,4 +34,12 @@ public interface SqlExpDao {
      * @return task description
      */
     String getTaskDescription(Long questionId);
+    
+    
+    /**
+     * Retrieves the all questions from DB
+     * 
+     * @return {@link List} of question names
+     */
+    List<String> getAllQuestionNames();
 }

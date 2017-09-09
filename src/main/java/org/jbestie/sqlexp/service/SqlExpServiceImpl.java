@@ -1,5 +1,7 @@
 package org.jbestie.sqlexp.service;
 
+import java.util.List;
+
 import org.jbestie.sqlexp.dao.SqlExpDao;
 import org.jbestie.sqlexp.model.QueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,13 @@ public class SqlExpServiceImpl implements SqlExpService {
     @Override
     public String getTaskDescription(Long questionId) {
         return sqlExpDao.getTaskDescription(questionId);
+    }
+    
+    /**
+     * {@inheritDoc}}
+     */
+    @Override
+    public List<String> getAllQuestionNames() {
+        return sqlExpDao.getAllQuestionNames();
     }
 }

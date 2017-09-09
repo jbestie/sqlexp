@@ -1,6 +1,9 @@
 package org.jbestie.sqlexp;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.jbestie.sqlexp.config.SqlExpConfiguration;
 import org.jbestie.sqlexp.dao.SqlExpDao;
 import org.jbestie.sqlexp.model.QueryResult;
@@ -38,5 +41,12 @@ public class SqlExpDaoTest {
         String description = sqlExpDao.getTaskDescription(1L);
         
         Assert.assertNotNull("Description has not to be null!", description);
+    }
+    
+    
+    @Test
+    public void testGetQuestionNames() {
+        List<String> names = sqlExpDao.getAllQuestionNames();
+        Assert.assertEquals("Has to be equals!", Arrays.asList("Question 1"), names);
     }
 }

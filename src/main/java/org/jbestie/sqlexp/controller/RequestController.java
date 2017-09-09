@@ -1,5 +1,7 @@
 package org.jbestie.sqlexp.controller;
 
+import java.util.ArrayList;
+
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.jbestie.sqlexp.model.QueryResult;
 import org.jbestie.sqlexp.model.RequestResponse;
@@ -40,8 +42,6 @@ public class RequestController {
         } catch (Exception ex) {
             message = ex.getLocalizedMessage();
         }
-        model.addAttribute("message", message);
-        model.addAttribute("questionId", questionId);
         
         return new ResponseEntity<RequestResponse>(new RequestResponse(correct, message, userQuery), HttpStatus.OK);
     }
@@ -52,6 +52,8 @@ public class RequestController {
     public String showQuestion (@RequestParam Long questionId, Model model) {
         String description = service.getTaskDescription(questionId);
         model.addAttribute("description", description);
+        model.addAttribute("questionId", questionId);
+        model.addAttribute("questionList", service.getAllQuestionNames());
         return "question";
     }
 }

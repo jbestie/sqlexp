@@ -1,5 +1,7 @@
 package org.jbestie.sqlexp.service;
 
+import java.util.List;
+
 import org.jbestie.sqlexp.model.QueryResult;
 
 public interface SqlExpService {
@@ -32,4 +34,12 @@ public interface SqlExpService {
      * @return task description
      */
     String getTaskDescription(Long questionId);
+    
+    
+    /**
+     * Retrieves the list of all questions name
+     * 
+     * @return {@link List} of all question names
+     */
+    List<String> getAllQuestionNames();
 }

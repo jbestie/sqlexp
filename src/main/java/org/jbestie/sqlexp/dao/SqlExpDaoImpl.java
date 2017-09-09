@@ -68,4 +68,24 @@ public class SqlExpDaoImpl implements SqlExpDao {
         
         return jdbcTemplate.queryForObject(SELECT_QUESTION_DESCRIPTION, queryMap, (rs, row) -> {return rs.getString("description");});
     }
+    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<String> getAllQuestionNames() {
+        // TODO bestie : when add NAME to TASK then improve the SELECT
+        return jdbcTemplate.query("SELECT * FROM TASK", (rs) -> {
+            List<String> result = new ArrayList<>();
+            
+            int i = 1;
+            while (rs.next()) {
+                result.add("Question " + i);
+                i++;
+            }
+            
+            return result;
+        });
+    }
 }
