@@ -1,0 +1,37 @@
+.main {
+    color: red;
+}
+LABEL.error_message {
+    color: red;
+}
+LABEL.success_message {
+    color: green;
+}
+DIV.question_right {
+    padding: 25px;
+    overflow: hidden;
+    height: 800px;
+    background: #ccc;
+}
+DIV.question_left {
+    padding: 25px;
+    float: left;
+    width: 200px;
+    height: 800px;
+    background: #888;
+}
+LEGEND.question_title {
+    font-weight: bold;
+}
+TEXTAREA.query {
+    width: 400px;
+    height: 400px;
+}
+TEXTAREA.query_result{
+    width: 400px;
+    height: 400px;
+    background-color: #D3D3D3;
+}
+INPUT.next_question {
+    display:none;
+}
