@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.List"%>
 
 <html>
     <head>
@@ -7,7 +6,10 @@
     </head>
     
     <body>
-        <h1 class="main">Hello there!</h1><br/>
-        <a href="question?questionId=1">Question 1</a>
+        <h1 class="main">Welcome to Sql Experience site!</h1>
+        <div class = "top_index_login_register">
+            <a href="login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="registration">Registration</a><br/>
+        </div>
+        <a href="question?questionId=1">Question 1</a><br/>
     </body>
 </html>

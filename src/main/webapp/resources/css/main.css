@@ -7,6 +7,11 @@ LABEL.error_message {
 LABEL.success_message {
     color: green;
 }
+LABEL.registration_label{
+    width: 120px;
+    text-align: right;
+    display: inline-block;
+}
 DIV.question_right {
     padding: 25px;
     overflow: hidden;
@@ -19,6 +24,11 @@ DIV.question_left {
     width: 200px;
     height: 800px;
     background: #888;
+}
+DIV.top_index_login_register {
+    width: 800px;
+    height: 40px;
+    text-align: right;
 }
 LEGEND.question_title {
     font-weight: bold;
