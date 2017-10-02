@@ -1,13 +1,17 @@
 package org.jbestie.sqlexp.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.jbestie.sqlexp.enums.Role;
 import org.jbestie.sqlexp.model.QueryResult;
 import org.jbestie.sqlexp.model.RequestResponse;
+import org.jbestie.sqlexp.model.Task;
 import org.jbestie.sqlexp.model.User;
 import org.jbestie.sqlexp.service.SqlExpService;
+import org.jbestie.sqlexp.service.TaskService;
 import org.jbestie.sqlexp.service.UserService;
 import org.jbestie.sqlexp.validator.UserFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +41,20 @@ public class RequestController {
     
     @Autowired
     UserService userService;
-    
+
+    @Autowired
+    TaskService taskService;
+
     @Autowired
     UserFormValidator userFormValidator;
     
     
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        binder.setValidator(userFormValidator);
-    }
+//    @InitBinder
+//    protected void initBinder(WebDataBinder binder) {
+//        binder.setValidator(userFormValidator);
+//    }
     
     
     @RequestMapping(path = "/*", method = RequestMethod.GET)
@@ -56,14 +63,14 @@ public class RequestController {
     }
     
     @RequestMapping(path = "/submit", method = RequestMethod.GET)
-    public ResponseEntity<RequestResponse> sumbitAnswer (@RequestParam Long questionId, @RequestParam String query, Model model) {
+    public ResponseEntity<RequestResponse> sumbitAnswer (@RequestParam Long id, @RequestParam String query, Model model) {
         
         String message = "";
         boolean correct = false;
         QueryResult userQuery = null;
         try {
-            userQuery = service.performUsersQuery(questionId, query) ;
-            QueryResult correctQuery = service.performCorrectQuery(questionId);
+            userQuery = service.performUsersQuery(id, query) ;
+            QueryResult correctQuery = service.performCorrectQuery(id);
             correct = correctQuery.equals(userQuery);
             message  = correct ? "Correct!" : "Wrong answer";
         } catch (Exception ex) {
@@ -77,9 +84,8 @@ public class RequestController {
     
     @RequestMapping(path = "/question", method = RequestMethod.GET)
     public String showQuestion (@RequestParam Long questionId, Model model) {
-        String description = service.getTaskDescription(questionId);
-        model.addAttribute("description", description);
-        model.addAttribute("questionId", questionId);
+        Task task = taskService.getTask(questionId);
+        model.addAttribute("task", task);
         model.addAttribute("questionList", service.getAllQuestionNames());
         return "question";
     }
@@ -109,5 +115,22 @@ public class RequestController {
         userService.createUser(user);
         
         return "redirect:index";
+    }
+
+
+    @RequestMapping(path = "/editor/edit", method = RequestMethod.GET)
+    public String editTask(Model model) {
+        Map<Long, String> categories = new HashMap<>();
+        categories.put(1L, "TestCategory");
+
+        model.addAttribute("categories", categories);
+        return "editor/editor";
+    }
+
+
+    @RequestMapping(path = "/editor/createtask", method =  RequestMethod.POST)
+    public String createTask(@ModelAttribute("task") Task task) {
+        logger.info("Task is " + task);
+        return "index";
     }
 }

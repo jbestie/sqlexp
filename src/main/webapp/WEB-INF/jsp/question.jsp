@@ -13,7 +13,7 @@
                         type: "GET",
                         url: "submit",
                         data: { 
-                            questionId: $("#questionId").val(),
+                            id: $("#id").val(),
                             query: $("#query").val() 
                         },
                         success: function(result) {
@@ -49,10 +49,10 @@
             </div>
             <div class = "question_right">
                 <fieldset>
-                    <legend class="question_title">Question ${questionId}: Get all employees</legend>
+                    <legend class="question_title">${task.name}</legend>
                     ${description}<br/>
-                        <input type = "hidden" id = "questionId" name = "questionId" value = "1"/>
-                        <textarea id = "query" class="query" name = "query"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="queryResult" readonly class="query_result"></textarea><br/>
+                        <input type = "hidden" id = "id" name = "id" value = "1"/>
+                        <textarea id = "query" class="query" name = "query"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="queryResult" readonly class="query_result">${task.description}</textarea><br/>
                         <label id="error_message" class="error_message"></label><label id="success_message" class="success_message"></label><br/>
                         <input type="button" value="Run query" id = "executeQuery"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="next_question" value="Next question" id = "nextQuestion"/>
                 </fieldset>

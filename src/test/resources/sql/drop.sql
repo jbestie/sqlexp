@@ -1,5 +1,6 @@
 -- tasks for solving
 DROP TABLE IF EXISTS TASK;
+DROP TABLE IF EXISTS TASK_CATEGORY;
 
 -- internal user's data
 DROP TABLE IF EXISTS USERS;

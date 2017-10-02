@@ -81,7 +81,7 @@ public class SqlExpDaoImpl implements SqlExpDao {
             
             int i = 1;
             while (rs.next()) {
-                result.add("Question " + i);
+                result.add("Task " + i);
                 i++;
             }
             
