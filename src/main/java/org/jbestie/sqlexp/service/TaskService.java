@@ -2,6 +2,8 @@ package org.jbestie.sqlexp.service;
 
 import org.jbestie.sqlexp.model.Task;
 
+import java.util.List;
+
 public interface TaskService {
     /**
      * Stores the new task in DB
@@ -36,4 +38,11 @@ public interface TaskService {
      * @return - {@link Task} details from DB
      */
     Task getTask(Long id);
+
+    /**
+     * Retrieves the all tasks list from DB
+     *
+     * @return {@link List} with all {@link Task}
+     */
+    List<Task> getAllTasks();
 }

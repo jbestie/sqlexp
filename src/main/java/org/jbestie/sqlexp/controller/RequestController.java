@@ -2,6 +2,7 @@ package org.jbestie.sqlexp.controller;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.impl.Log4JLogger;
@@ -119,18 +120,28 @@ public class RequestController {
 
 
     @RequestMapping(path = "/editor/edit", method = RequestMethod.GET)
-    public String editTask(Model model) {
+    public String editTask(@RequestParam Long id, Model model) {
         Map<Long, String> categories = new HashMap<>();
         categories.put(1L, "TestCategory");
 
         model.addAttribute("categories", categories);
+        model.addAttribute("task", taskService.getTask(id));
         return "editor/editor";
     }
 
 
-    @RequestMapping(path = "/editor/createtask", method =  RequestMethod.POST)
-    public String createTask(@ModelAttribute("task") Task task) {
-        logger.info("Task is " + task);
-        return "index";
+
+    @RequestMapping(path = "/editor/", method = RequestMethod.GET)
+    public String taskList(Model model) {
+        List<Task> taskList = taskService.getAllTasks();
+        model.addAttribute("taskList", taskList);
+        return "editor/index";
+    }
+
+
+    @RequestMapping(path = "/editor/updateTask", method =  RequestMethod.POST)
+    public String updateTask(@ModelAttribute("task") Task task) {
+        taskService.updateTask(task);
+        return "redirect:/editor/";
     }
 }

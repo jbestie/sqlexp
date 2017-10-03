@@ -25,6 +25,23 @@ DIV.question_left {
     height: 800px;
     background: #888;
 }
+DIV.inner_question_right {
+    padding: 5px;
+    overflow: hidden;
+    height: 400px;
+	width: 300px;
+    background: #ccc;
+    border: solid 1px;
+    margin: 0 0 0 40px;
+    float: left;
+}
+DIV.inner_question_left {
+    padding: 5px;
+    float: left;
+    width: 400px;
+    height: 400px;
+    background: #888;
+}
 DIV.top_index_login_register {
     width: 800px;
     height: 40px;

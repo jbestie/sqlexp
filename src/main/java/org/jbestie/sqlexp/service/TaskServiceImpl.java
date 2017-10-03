@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 public class TaskServiceImpl implements TaskService {
@@ -20,11 +22,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public void deleteTask(Long id) {
         taskDao.deleteTask(id);
     }
 
     @Override
+    @Transactional
     public void updateTask(Task task) {
         taskDao.updateTask(task);
     }
@@ -32,5 +36,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task getTask(Long id) {
         return taskDao.getTask(id);
+    }
+
+    @Override
+    public List<Task> getAllTasks() {
+        return taskDao.getAllTasks();
     }
 }

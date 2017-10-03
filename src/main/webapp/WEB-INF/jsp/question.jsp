@@ -50,10 +50,16 @@
             <div class = "question_right">
                 <fieldset>
                     <legend class="question_title">${task.name}</legend>
-                    ${description}<br/>
+                    ${task.description}<br/>
                         <input type = "hidden" id = "id" name = "id" value = "1"/>
-                        <textarea id = "query" class="query" name = "query"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="queryResult" readonly class="query_result">${task.description}</textarea><br/>
-                        <label id="error_message" class="error_message"></label><label id="success_message" class="success_message"></label><br/>
+						<div>
+							<div class = "inner_question_left">
+								<textarea id = "query" class="query" name = "query"></textarea>
+							</div>
+							<div id="queryResult" class = "inner_question_right" class="query_result"></div><br/>
+							<div class="spacer" style="clear: both;"></div>
+                        </div>
+						<label id="error_message" class="error_message"></label><label id="success_message" class="success_message"></label><br/>
                         <input type="button" value="Run query" id = "executeQuery"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="next_question" value="Next question" id = "nextQuestion"/>
                 </fieldset>
             </div>

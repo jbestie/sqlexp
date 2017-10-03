@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
@@ -35,6 +37,9 @@ public class TaskDaoTest {
 
         Task storedTask = taskDao.getTask(id);
         assertEquals("Should be equals", task, storedTask);
+
+        List<Task> taskList = taskDao.getAllTasks();
+        assertEquals("Size should be 1!", 1, taskList.size());
 
         task.setDescription("Another");
         taskDao.updateTask(task);
