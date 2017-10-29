@@ -34,6 +34,7 @@ DIV.inner_question_right {
     border: solid 1px;
     margin: 0 0 0 40px;
     float: left;
+	text-align: center;
 }
 DIV.inner_question_left {
     padding: 5px;
@@ -54,11 +55,19 @@ TEXTAREA.query {
     width: 400px;
     height: 400px;
 }
-TEXTAREA.query_result{
-    width: 400px;
-    height: 400px;
-    background-color: #D3D3D3;
-}
 INPUT.next_question {
     display:none;
+}
+TABLE.result_table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+TD.result_table {
+    padding: 3px;
+    border: 1px solid black;
+}
+TH.result_table {
+    padding: 3px;
+    border: 1px solid black;
+	background: #b0e0e6;
 }

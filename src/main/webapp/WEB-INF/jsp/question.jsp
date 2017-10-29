@@ -26,15 +26,48 @@
                                 $("#success_message").text("");
                                 $("#error_message").text(result.message);
                             }
-                            
-                            $("#queryResult").text("result");
+
+							var resultString = "<table class=\"result_table\">";
+							var endTable = "</table>"
+
+							var columnsResult = result.queryResult.columnNames;
+							var columnsLength = columnsResult.length;
+
+							// head
+							resultString += "<tr>"
+							for (var i = 0; i < columnsLength; i++) {
+								resultString += "<th class=\"result_table\">" + columnsResult[i] + "</th>";
+							}
+							resultString += "</tr>";
+							// end head
+
+							// content
+							var resultRows = result.queryResult.resultSet;
+							var rowsCount = resultRows.length;
+
+							for (var i = 0; i < rowsCount; i++) {
+								var resultColumns = resultRows[i];
+								var colsCount = resultColumns.length;
+								resultString += "<tr>";
+
+								for (var j = 0; j < colsCount; j++) {
+									resultString += "<td class=\"result_table\">";
+									resultString += resultColumns[j];
+									resultString += "</td>";
+								}
+
+								resultString += "</tr>";
+							}
+							// end content
+
+                            $("#queryResult").append(resultString);
                         },
                         error: function(result) {
                             alert('error');
                         }
                     });
-                }) 
-            }); 
+                })
+            });
         </script>
     </head>
     <body>
@@ -56,7 +89,7 @@
 							<div class = "inner_question_left">
 								<textarea id = "query" class="query" name = "query"></textarea>
 							</div>
-							<div id="queryResult" class = "inner_question_right" class="query_result"></div><br/>
+							<div id="queryResult" class = "inner_question_right query_result"></div><br/>
 							<div class="spacer" style="clear: both;"></div>
                         </div>
 						<label id="error_message" class="error_message"></label><label id="success_message" class="success_message"></label><br/>
