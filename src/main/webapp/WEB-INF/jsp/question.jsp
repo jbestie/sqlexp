@@ -60,7 +60,7 @@
 							}
 							// end content
 
-                            $("#queryResult").append(resultString);
+                            $("#queryResult").html(resultString);
                         },
                         error: function(result) {
                             alert('error');
