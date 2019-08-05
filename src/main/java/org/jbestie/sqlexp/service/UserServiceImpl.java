@@ -2,7 +2,6 @@ package org.jbestie.sqlexp.service;
 
 import org.jbestie.sqlexp.dao.UserDao;
 import org.jbestie.sqlexp.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,15 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserDao userDao;
-    
-    
+    final UserDao userDao;
+
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public Long createUser(User user) {
         return userDao.createUser(user);
     }
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }

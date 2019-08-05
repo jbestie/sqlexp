@@ -4,7 +4,9 @@
 
 <html>
     <head>
+        <title>Registration</title>
         <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+        <title></title>
     </head>
     
     <body>

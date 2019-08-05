@@ -1,7 +1,7 @@
 package org.jbestie.sqlexp;
 
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.jbestie.sqlexp.config.SqlExpConfiguration;
@@ -10,7 +10,6 @@ import org.jbestie.sqlexp.dao.TaskDao;
 import org.jbestie.sqlexp.model.QueryResult;
 import org.jbestie.sqlexp.model.Task;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class SqlExpDaoTest {
         Assert.assertNotNull("Description has not to be null!", description);
 
         List<String> names = sqlExpDao.getAllQuestionNames();
-        Assert.assertEquals("Has to be equals!", Arrays.asList("Task 1"), names);
+        Assert.assertEquals("Has to be equals!", Collections.singletonList("Task 1"), names);
 
         taskDao.deleteTask(id);
     }

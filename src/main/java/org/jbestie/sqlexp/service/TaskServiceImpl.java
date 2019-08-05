@@ -2,7 +2,6 @@ package org.jbestie.sqlexp.service;
 
 import org.jbestie.sqlexp.dao.TaskDao;
 import org.jbestie.sqlexp.model.Task;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class TaskServiceImpl implements TaskService {
 
-    @Autowired
-    TaskDao taskDao;
+    final TaskDao taskDao;
+
+    public TaskServiceImpl(TaskDao taskDao) {
+        this.taskDao = taskDao;
+    }
 
 
     @Override

@@ -6,7 +6,7 @@ public class ApplicationConfiguration extends AbstractAnnotationConfigDispatcher
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ SqlExpConfiguration.class };
+        return new Class<?>[]{ SqlExpConfiguration.class, SecurityConfiguration.class };
     }
 
     @Override

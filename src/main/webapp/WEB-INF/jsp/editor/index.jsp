@@ -2,7 +2,9 @@
 
 <html>
     <head>
+        <title>Task editor</title>
         <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+        <title></title>
     </head>
     
     <body>

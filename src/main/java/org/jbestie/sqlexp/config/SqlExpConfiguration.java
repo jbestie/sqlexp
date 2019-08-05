@@ -20,7 +20,7 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan({ "org.jbestie.sqlexp" })
 @PropertySource({"classpath:db.properties"})
 @EnableTransactionManagement
-public class SqlExpConfiguration extends WebMvcConfigurerAdapter {
+public class SqlExpConfiguration implements WebMvcConfigurer {
     @Value("${db.url}")
     private String dbUrl;
 

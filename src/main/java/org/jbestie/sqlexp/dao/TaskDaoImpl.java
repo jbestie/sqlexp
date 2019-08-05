@@ -1,7 +1,6 @@
 package org.jbestie.sqlexp.dao;
 
 import org.jbestie.sqlexp.model.Task;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +11,11 @@ import java.util.Map;
 
 @Repository
 public class TaskDaoImpl implements TaskDao {
-    @Autowired
-    NamedParameterJdbcTemplate jdbcTemplate;
+    final NamedParameterJdbcTemplate jdbcTemplate;
+
+    public TaskDaoImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Long createTask(Task task) {

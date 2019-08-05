@@ -1,11 +1,13 @@
 package org.jbestie.sqlexp.controller;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.impl.Log4JLogger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jbestie.sqlexp.enums.Role;
 import org.jbestie.sqlexp.model.QueryResult;
 import org.jbestie.sqlexp.model.RequestResponse;
@@ -15,17 +17,13 @@ import org.jbestie.sqlexp.service.SqlExpService;
 import org.jbestie.sqlexp.service.TaskService;
 import org.jbestie.sqlexp.service.UserService;
 import org.jbestie.sqlexp.validator.UserFormValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,23 +33,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RequestController {
     
-    Log4JLogger logger = new Log4JLogger(getClass().getSimpleName());
+    final Logger logger = LogManager.getLogger(getClass().getSimpleName());
     
-    @Autowired
-    SqlExpService service;
-    
-    @Autowired
-    UserService userService;
+    final SqlExpService service;
+    final UserService userService;
+    final TaskService taskService;
+    final UserFormValidator userFormValidator;
+    final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    @Autowired
-    TaskService taskService;
+    public RequestController(SqlExpService service, UserService userService, TaskService taskService, UserFormValidator userFormValidator) {
+        this.service = service;
+        this.userService = userService;
+        this.taskService = taskService;
+        this.userFormValidator = userFormValidator;
+    }
 
-    @Autowired
-    UserFormValidator userFormValidator;
-    
-    
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    
 //    @InitBinder
 //    protected void initBinder(WebDataBinder binder) {
 //        binder.setValidator(userFormValidator);
@@ -59,14 +55,17 @@ public class RequestController {
     
     
     @RequestMapping(path = "/*", method = RequestMethod.GET)
-    public String indexPage() {
+    public String indexPage(Principal principal) {
+        if (principal != null) {
+            logger.warn(principal);
+        }
         return "index";
     }
     
     @RequestMapping(path = "/submit", method = RequestMethod.GET)
-    public ResponseEntity<RequestResponse> sumbitAnswer (@RequestParam Long id, @RequestParam String query, Model model) {
+    public ResponseEntity<RequestResponse> submitAnswer(@RequestParam Long id, @RequestParam String query, Model model) {
         
-        String message = "";
+        String message;
         boolean correct = false;
         QueryResult userQuery = null;
         try {
@@ -78,7 +77,7 @@ public class RequestController {
             message = ex.getLocalizedMessage();
         }
         
-        return new ResponseEntity<RequestResponse>(new RequestResponse(correct, message, userQuery), HttpStatus.OK);
+        return new ResponseEntity<>(new RequestResponse(correct, message, userQuery), HttpStatus.OK);
     }
     
     
@@ -115,7 +114,7 @@ public class RequestController {
         user.setRegistrationDate(LocalDateTime.now());
         userService.createUser(user);
         
-        return "redirect:index";
+        return "redirect:/";
     }
 
 

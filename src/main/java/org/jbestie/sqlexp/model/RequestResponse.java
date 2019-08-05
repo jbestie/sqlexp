@@ -1,9 +1,9 @@
 package org.jbestie.sqlexp.model;
 
 public class RequestResponse {
-    private boolean correct;
-    private String message;
-    private QueryResult queryResult;
+    private final boolean correct;
+    private final String message;
+    private final QueryResult queryResult;
     
     public RequestResponse(boolean correct, String message, QueryResult queryResult) {
         this.correct = correct;
@@ -27,34 +27,39 @@ public class RequestResponse {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (correct ? 1231 : 1237);
-        result = prime * result + ((message == null) ? 0 : message.hashCode());
-        result = prime * result + ((queryResult == null) ? 0 : queryResult.hashCode());
+        result = (prime * result) + (correct ? 1231 : 1237);
+        result = (prime * result) + ((message == null) ? 0 : message.hashCode());
+        result = (prime * result) + ((queryResult == null) ? 0 : queryResult.hashCode());
         return result;
     }
     
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         RequestResponse other = (RequestResponse) obj;
-        if (correct != other.correct)
+        if (correct != other.correct) {
             return false;
+        }
         if (message == null) {
-            if (other.message != null)
+            if (other.message != null) {
                 return false;
-        } else if (!message.equals(other.message))
+            }
+        } else if (!message.equals(other.message)) {
             return false;
+        }
         if (queryResult == null) {
-            if (other.queryResult != null)
-                return false;
-        } else if (!queryResult.equals(other.queryResult))
-            return false;
-        return true;
+            return other.queryResult == null;
+        } else {
+            return queryResult.equals(other.queryResult);
+        }
     }
     
     @Override

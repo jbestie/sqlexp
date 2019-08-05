@@ -1,23 +1,28 @@
 .main {
     color: red;
 }
+
 LABEL.error_message {
     color: red;
 }
+
 LABEL.success_message {
     color: green;
 }
-LABEL.registration_label{
+
+LABEL.registration_label {
     width: 120px;
     text-align: right;
     display: inline-block;
 }
+
 DIV.question_right {
     padding: 25px;
     overflow: hidden;
     height: 800px;
     background: #ccc;
 }
+
 DIV.question_left {
     padding: 25px;
     float: left;
@@ -25,17 +30,19 @@ DIV.question_left {
     height: 800px;
     background: #888;
 }
+
 DIV.inner_question_right {
     padding: 5px;
     overflow: hidden;
     height: 400px;
-	width: 300px;
+    width: 300px;
     background: #ccc;
     border: solid 1px;
     margin: 0 0 0 40px;
     float: left;
-	text-align: center;
+    text-align: center;
 }
+
 DIV.inner_question_left {
     padding: 5px;
     float: left;
@@ -43,31 +50,38 @@ DIV.inner_question_left {
     height: 400px;
     background: #888;
 }
+
 DIV.top_index_login_register {
     width: 800px;
     height: 40px;
     text-align: right;
 }
+
 LEGEND.question_title {
     font-weight: bold;
 }
+
 TEXTAREA.query {
     width: 400px;
     height: 400px;
 }
+
 INPUT.next_question {
-    display:none;
+    display: none;
 }
+
 TABLE.result_table {
-	border-collapse: collapse;
-	margin: 0 auto;
+    border-collapse: collapse;
+    margin: 0 auto;
 }
+
 TD.result_table {
     padding: 3px;
     border: 1px solid black;
 }
+
 TH.result_table {
     padding: 3px;
     border: 1px solid black;
-	background: #b0e0e6;
+    background: #b0e0e6;
 }

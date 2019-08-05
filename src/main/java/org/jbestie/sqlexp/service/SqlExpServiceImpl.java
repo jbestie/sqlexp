@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.jbestie.sqlexp.dao.SqlExpDao;
 import org.jbestie.sqlexp.model.QueryResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,16 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class SqlExpServiceImpl implements SqlExpService {
 
-    @Autowired
-    private SqlExpDao sqlExpDao;
-    
+    private final SqlExpDao sqlExpDao;
+
+    public SqlExpServiceImpl(SqlExpDao sqlExpDao) {
+        this.sqlExpDao = sqlExpDao;
+    }
+
     /**
      * {@inheritDoc}}
      */
     @Override
     public QueryResult performUsersQuery(Long questionId, String query) {
-        QueryResult usersResult = sqlExpDao.performQuery(query);
-        return usersResult;
+        return sqlExpDao.performQuery(query);
     }
 
     /**
@@ -30,8 +31,7 @@ public class SqlExpServiceImpl implements SqlExpService {
     @Override
     public QueryResult performCorrectQuery(Long questionId) {
         String correctQuery = sqlExpDao.getCorrectQuery(questionId);
-        QueryResult correctResult = sqlExpDao.performQuery(correctQuery);
-        return correctResult;
+        return sqlExpDao.performQuery(correctQuery);
     }
     
     /**

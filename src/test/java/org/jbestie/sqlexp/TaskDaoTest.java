@@ -3,7 +3,6 @@ package org.jbestie.sqlexp;
 import org.jbestie.sqlexp.config.SqlExpConfiguration;
 import org.jbestie.sqlexp.dao.TaskDao;
 import org.jbestie.sqlexp.model.Task;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 @WebAppConfiguration
