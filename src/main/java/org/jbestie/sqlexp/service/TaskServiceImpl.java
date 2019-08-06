@@ -1,7 +1,9 @@
 package org.jbestie.sqlexp.service;
 
+import org.jbestie.sqlexp.dao.TaskCategoryDao;
 import org.jbestie.sqlexp.dao.TaskDao;
 import org.jbestie.sqlexp.model.Task;
+import org.jbestie.sqlexp.model.TaskCategory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,13 +14,16 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     final TaskDao taskDao;
+    final TaskCategoryDao taskCategoryDao;
 
-    public TaskServiceImpl(TaskDao taskDao) {
+    public TaskServiceImpl(TaskDao taskDao, TaskCategoryDao taskCategoryDao) {
         this.taskDao = taskDao;
+        this.taskCategoryDao = taskCategoryDao;
     }
 
 
     @Override
+    @Transactional
     public Long createTask(Task task) {
         return taskDao.createTask(task);
     }
@@ -43,5 +48,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getAllTasks() {
         return taskDao.getAllTasks();
+    }
+
+    @Override
+    public List<TaskCategory>  getAllCategories() {
+        return taskCategoryDao.getAllTaskCategories();
     }
 }

@@ -1,6 +1,7 @@
 -- =======================
 -- all required sequences
 -- =======================
+CREATE SEQUENCE seq_task_category START 3;
 CREATE SEQUENCE seq_task;
 CREATE SEQUENCE seq_user;
 
@@ -25,8 +26,6 @@ CREATE TABLE TASK
     DESCRIPTION VARCHAR (4096) NOT NULL,
     QUERY VARCHAR (4096) NOT NULL
 );
-INSERT INTO TASK(ID, CATEGORY_ID, NAME, DESCRIPTION, QUERY) VALUES (1, 1, 'Find the all employees', 'Description','SELECT ID, NAME, ROLE, YEARS FROM EMPLOYEES ORDER BY ID');
-
 
 -- =======================
 -- system data
@@ -50,7 +49,6 @@ CREATE TABLE USERS
     role INTEGER REFERENCES ROLES(id),
     active BOOLEAN DEFAULT FALSE
 );
-INSERT INTO USERS(id, login, password, email, registration_date, role, active) VALUES (nextval('seq_user'), 'bestie', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 'test@email.com', now(), 1, true);
 
 -- =======================
 -- All data for tasks

@@ -1,8 +1,10 @@
 package org.jbestie.sqlexp.service;
 
 import org.jbestie.sqlexp.model.Task;
+import org.jbestie.sqlexp.model.TaskCategory;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TaskService {
     /**
@@ -45,4 +47,11 @@ public interface TaskService {
      * @return {@link List} with all {@link Task}
      */
     List<Task> getAllTasks();
+
+    /**
+     * Retrieves all available categories
+     *
+     * @return {@link List} with all categories mapped to id
+     */
+    List<TaskCategory> getAllCategories();
 }

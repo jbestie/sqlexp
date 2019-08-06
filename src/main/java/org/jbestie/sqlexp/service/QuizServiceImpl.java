@@ -2,27 +2,27 @@ package org.jbestie.sqlexp.service;
 
 import java.util.List;
 
-import org.jbestie.sqlexp.dao.SqlExpDao;
+import org.jbestie.sqlexp.dao.QuizDao;
 import org.jbestie.sqlexp.model.QueryResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class SqlExpServiceImpl implements SqlExpService {
+public class QuizServiceImpl implements QuizService {
 
-    private final SqlExpDao sqlExpDao;
+    private final QuizDao quizDao;
 
-    public SqlExpServiceImpl(SqlExpDao sqlExpDao) {
-        this.sqlExpDao = sqlExpDao;
+    public QuizServiceImpl(QuizDao quizDao) {
+        this.quizDao = quizDao;
     }
 
     /**
      * {@inheritDoc}}
      */
     @Override
-    public QueryResult performUsersQuery(Long questionId, String query) {
-        return sqlExpDao.performQuery(query);
+    public QueryResult performUsersQuery(String query) {
+        return quizDao.performQuery(query);
     }
 
     /**
@@ -30,8 +30,8 @@ public class SqlExpServiceImpl implements SqlExpService {
      */
     @Override
     public QueryResult performCorrectQuery(Long questionId) {
-        String correctQuery = sqlExpDao.getCorrectQuery(questionId);
-        return sqlExpDao.performQuery(correctQuery);
+        String correctQuery = quizDao.getCorrectQuery(questionId);
+        return quizDao.performQuery(correctQuery);
     }
     
     /**
@@ -39,7 +39,7 @@ public class SqlExpServiceImpl implements SqlExpService {
      */
     @Override
     public String getTaskDescription(Long questionId) {
-        return sqlExpDao.getTaskDescription(questionId);
+        return quizDao.getTaskDescription(questionId);
     }
     
     /**
@@ -47,6 +47,6 @@ public class SqlExpServiceImpl implements SqlExpService {
      */
     @Override
     public List<String> getAllQuestionNames() {
-        return sqlExpDao.getAllQuestionNames();
+        return quizDao.getAllQuestionNames();
     }
 }

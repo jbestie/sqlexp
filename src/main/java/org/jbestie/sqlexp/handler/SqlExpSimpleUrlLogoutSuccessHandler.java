@@ -10,12 +10,10 @@ import java.io.IOException;
 
 public class SqlExpSimpleUrlLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
     public static final String USERNAME = "username";
-    public static final String PASSWORD = "password";
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        super.onLogoutSuccess(request, response, authentication);
         request.getSession().removeAttribute(USERNAME);
-        request.getSession().removeAttribute(PASSWORD);
+        super.onLogoutSuccess(request, response, authentication);
     }
 }

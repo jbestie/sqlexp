@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.jbestie.sqlexp.model.QueryResult;
 
-public interface SqlExpDao {
+public interface QuizDao {
     
     /**
      * Runs the query and concat the result into single string

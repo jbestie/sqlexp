@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class SqlExpDaoImpl implements SqlExpDao {
+public class QuizDaoImpl implements QuizDao {
 
     
     private static final String SELECT_QUESTION_DESCRIPTION = "SELECT description FROM TASK WHERE id = :questionId";
@@ -19,7 +19,7 @@ public class SqlExpDaoImpl implements SqlExpDao {
     
     final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public SqlExpDaoImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+    public QuizDaoImpl(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

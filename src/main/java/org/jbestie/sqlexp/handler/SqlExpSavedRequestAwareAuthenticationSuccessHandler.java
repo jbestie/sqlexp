@@ -10,12 +10,10 @@ import java.io.IOException;
 
 public class SqlExpSavedRequestAwareAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler{
     public static final String USERNAME = "username";
-    public static final String PASSWORD = "password";
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         super.onAuthenticationSuccess(request, response, authentication);
-        request.getSession().setAttribute(PASSWORD, request.getParameter(PASSWORD));
         request.getSession().setAttribute(USERNAME, request.getParameter(USERNAME));
     }
 }

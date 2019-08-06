@@ -23,7 +23,10 @@
         <h1 class="main">SqlExp questions editor</h1>
         <form:form method="post" autocomplete="false" modelAttribute="task" action="updateTask">
             <form:hidden path="id"/><br/>
-            <label class="registration_label">Category:</label><form:select path="category" items="${categories}"/><br/>
+            <label class="registration_label">Category:</label>
+            <form:select path="category" multiple="false">
+                <form:options items="${categories}" itemValue="id" itemLabel="name"/>
+            </form:select>
             <form:errors path="category"/><br/>
             <label class="registration_label">Task name:</label><form:input type="text" path="name"/><br/>
             <form:errors path="name"/><br/>
