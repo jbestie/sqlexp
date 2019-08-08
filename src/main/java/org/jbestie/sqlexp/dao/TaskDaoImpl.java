@@ -1,5 +1,6 @@
 package org.jbestie.sqlexp.dao;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.jbestie.sqlexp.model.Task;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -77,7 +78,7 @@ public class TaskDaoImpl implements TaskDao {
         paramMap.put("id", id);
 
         return jdbcTemplate.queryForObject(SELECT_TASK_QUERY, paramMap, (rs, rowNum) ->
-                new Task(rs.getLong("id"), rs.getLong("category_id"), rs.getString("name"), rs.getString("description"), rs.getString("query")));
+                new Task(rs.getLong("id"), rs.getLong("category_id"), rs.getString("name"), rs.getString("description"), StringEscapeUtils.escapeEcmaScript(rs.getString("query"))));
     }
 
     /**

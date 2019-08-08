@@ -21,20 +21,29 @@
             theme: 'modern',
             plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
             toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
-            image_advtab: true
+            image_advtab: true,
+            height: "170",
+            resize: false
         });
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var editor = monaco.editor.create(document.getElementById('query'), {
+            var editor = monaco.editor.create(document.getElementById('queryToExecute'), {
                 value: [
-
+                    '--- correct query here ', '', '', ''
                 ].join('\n'),
                 language: 'sql',
                 minimap: {
                     enabled: false
-                }
+                },
+                contentWidth: 700
             });
+
+            $('#createTask').click(function (e) {
+                $("#query").text(editor.getValue());
+                $("#task").submit();
+            });
+
             $('#executeQuery').click(function (e) {
                 e.preventDefault();
                 $.ajax({
@@ -98,23 +107,28 @@
 <h1 class="main">SqlExp questions editor</h1>
 <form:form method="post" autocomplete="false" modelAttribute="task" action="createTask">
     <label class="registration_label">Category:</label><form:select cssClass="editor_category" path="category" multiple="false">
-        <form:options items="${categories}" itemValue="id" itemLabel="name"/>
-    </form:select>
-    <form:errors path="category"/><br/>
-    <label class="registration_label">Task name:</label><form:input type="text" path="name"/>
-    <form:errors path="name"/><br/>
-    <label class="registration_label">Correct query:</label><form:textarea cssClass="editor_query" path="query"/>
-    <form:errors path="query"/><br/>
-    <input type="button" class="editor_run_query" value="Test query" id="executeQuery"/><br/>
-    <fieldset>
-        <legend class="query_result">Query result</legend>
-        <div id="queryResult" class="editor_query_result query_result"></div>
-    </fieldset><br/>
-    <fieldset>
+    <form:options items="${categories}" itemValue="id" itemLabel="name"/>
+</form:select>
+    <label class="registration_label">Task name:</label><form:input type="text" path="name" class="task_name"/><br/>
+    <form:errors path="category"/><form:errors path="name"/>
+    <fieldset class="editor_task_description">
         <legend class="question_title">Question description</legend>
         <form:textarea path="description"/><br/>
     </fieldset>
-    <input type="submit">
+    <div class="editor_two_panel_query">
+        <div id="queryToExecute" class="editor_query"></div>
+        <div class="button_to_execute_container">
+            <input type="button" class="editor_run_query" value="Test query" id="executeQuery"/><br/>
+        </div>
+        <div class="editor_result_side">
+            <div id="queryResult" class="editor_query_result query_result"></div>
+        </div>
+    </div>
+    <form:hidden path="query"/>
+    <form:errors path="query"/><br/>
+    <div class="create_task_button">
+        <input type="button" value="Create task" id="createTask" class="create_task_button">
+    </div>
 </form:form>
 </body>
 </html>

@@ -33,13 +33,13 @@
     </tr>
     </tfoot>
     <tbody>
-    <tr>
-        <c:forEach items="${taskList}" var="item" varStatus="loop">
+    <c:forEach items="${taskList}" var="item" varStatus="loop">
+        <tr>
             <td><b><c:out value="${item.name}"/></b></td>
             <td><b><c:out value="${categories[item.category].name}"/></b></td>
             <td><a href="<c:url value="/editor/edit?id=${item.id}"/>">Edit</a></td>
-        </c:forEach>
-    </tr>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
 </body>

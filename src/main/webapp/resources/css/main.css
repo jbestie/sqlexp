@@ -74,14 +74,32 @@ DIV.top_index_login_register {
 
 DIV.editor_query_result {
     padding: 5px;
-    height: 100px;
-    width: 800px;
+    height: 390px;
+    width: 600px;
     background: #ccc;
     border: solid 1px;
     margin: 0;
     float: none;
     text-align: center;
     overflow: auto;
+}
+
+DIV.button_to_execute_container {
+    width: 100px;
+    height: 400px;
+    float: left;
+}
+
+DIV.editor_two_panel_query {
+    width: 1474px;
+    height: 400px;
+}
+
+DIV.editor_result_side {
+    margin: 0px;
+    float: right;
+    height: 450px;
+    width: 500px;
 }
 
 LEGEND.question_title {
@@ -94,6 +112,19 @@ DIV.query {
     border:1px solid grey;
 }
 
+DIV.editor_query {
+    width: 820px;
+    height: 400px;
+    border: 1px solid grey;
+    margin: 0 0 0 50px;
+    float: left;
+}
+
+DIV.create_task_button {
+    width: 100px;
+    margin: 0px 10px 10px 883px;
+}
+
 TEXTAREA.editor_query {
     margin: 0;
     width: 600px;
@@ -103,6 +134,20 @@ TEXTAREA.editor_query {
 
 INPUT.next_question {
     display: none;
+}
+
+INPUT.task_name {
+    width: 460px;
+}
+
+INPUT.create_task_button {
+    background: #1C6EA4;
+    width: 100px;
+    height: 30px;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 TABLE.result_table {
@@ -120,12 +165,28 @@ TH.result_table {
     border: 1px solid black;
     background: #b0e0e6;
 }
+
 INPUT.editor_run_query {
-    margin: 0 0 0 215px;
+    margin: 180px 0 10px 10px;
+    background: #1C6EA4;
+    width: 80px;
+    height: 30px;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 7px;
+    cursor: pointer;
 }
+
 SELECT.editor_category {
     width: 173px;
 }
+
 FIELDSET.query_result {
     width: 820px;
+}
+
+FIELDSET.editor_task_description {
+    width: 800px;
+    height: 300px;
+    margin: 10px 0px 20px 50px;
 }
