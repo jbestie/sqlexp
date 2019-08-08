@@ -30,6 +30,8 @@ public class EditorController {
     @RequestMapping(path = "/editor/", method = RequestMethod.GET)
     public String taskList(Model model) {
         List<Task> taskList = taskService.getAllTasks();
+        List<TaskCategory> categories = taskService.getAllCategories();
+        model.addAttribute("categories", categories);
         model.addAttribute("taskList", taskList);
         return "editor/index";
     }
@@ -78,5 +80,17 @@ public class EditorController {
         }
 
         return new ResponseEntity<>(new RequestResponse(correct, message, userQuery), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/editor/create_category", method = RequestMethod.GET)
+    public String createTaskCategory(Model model) {
+        model.addAttribute("category", new TaskCategory(-1L, ""));
+        return "editor/create_category";
+    }
+
+    @RequestMapping(path = "/editor/createCategory", method =  RequestMethod.POST)
+    public String createTaskCategory(@ModelAttribute("category") TaskCategory taskCategory) {
+        taskService.createCategory(taskCategory);
+        return "redirect:/editor/";
     }
 }

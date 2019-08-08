@@ -54,4 +54,11 @@ public interface TaskService {
      * @return {@link List} with all categories mapped to id
      */
     List<TaskCategory> getAllCategories();
+
+    /**
+     * Creates the task category
+     *
+     * @param taskCategory task category to create
+     */
+    void createCategory(TaskCategory taskCategory);
 }

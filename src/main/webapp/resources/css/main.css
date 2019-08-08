@@ -2,6 +2,18 @@
     color: red;
 }
 
+DIV.creation_links {
+    margin-bottom: 20px;
+}
+
+DIV.creation_links a {
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
 LABEL.error_message {
     color: red;
 }
@@ -18,26 +30,28 @@ LABEL.registration_label {
 }
 
 DIV.question_right {
-    padding: 25px;
-    overflow: hidden;
+    padding: 0 20px 0 20px;
+    /*overflow: hidden;
     height: 800px;
-    background: #ccc;
+    background: #ccc;*/
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
+    box-sizing: border-box;
+    width: 100%;
 }
 
 DIV.question_left {
     padding: 25px;
     float: left;
     width: 200px;
-    height: 800px;
+    height: 100%;
     background: #888;
 }
 
 DIV.inner_question_right {
-    padding: 5px;
+    padding: 0px;
     overflow: hidden;
     height: 400px;
-    width: 300px;
-    background: #ccc;
+    width: 600px;
     border: solid 1px;
     margin: 0 0 0 40px;
     float: left;
@@ -45,7 +59,7 @@ DIV.inner_question_right {
 }
 
 DIV.inner_question_left {
-    padding: 5px;
+    padding: 0px;
     float: left;
     width: 400px;
     height: 400px;
@@ -74,9 +88,10 @@ LEGEND.question_title {
     font-weight: bold;
 }
 
-TEXTAREA.query {
-    width: 400px;
-    height: 400px;
+DIV.query {
+    width:400px;
+    height:400px;
+    border:1px solid grey;
 }
 
 TEXTAREA.editor_query {

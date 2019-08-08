@@ -21,37 +21,63 @@ public class TaskServiceImpl implements TaskService {
         this.taskCategoryDao = taskCategoryDao;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Long createTask(Task task) {
         return taskDao.createTask(task);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void deleteTask(Long id) {
         taskDao.deleteTask(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void updateTask(Task task) {
         taskDao.updateTask(task);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Task getTask(Long id) {
         return taskDao.getTask(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Task> getAllTasks() {
         return taskDao.getAllTasks();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<TaskCategory>  getAllCategories() {
         return taskCategoryDao.getAllTaskCategories();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void createCategory(TaskCategory taskCategory) {
+        taskCategoryDao.createTaskCategory(taskCategory);
     }
 }
