@@ -18,15 +18,15 @@
 </head>
 <body>
 <div class="questions_container">
-    <div class="question_left">
-    </div>
     <div class="question_right">
-        <h5>Questions</h5>
-        <ul>
+        <div class = "index_categories_container">
+            <h5>Questions</h5>
             <c:forEach items="${tasks}" var="task">
-                <li><a href="<c:url value="/question?questionId=${task.id}"/>"><c:out value="${task.name}"/></a></li>
+                <div class = "index_categories_item">
+                    <a href="<c:url value="/question?questionId=${task.id}"/>"><c:out value="${task.name}"/></a>
+                </div>
             </c:forEach>
-        </ul>
+        </div>
     </div>
     <div class="editor_bottom_nav_buttons">
         <div class="left_nav_button">

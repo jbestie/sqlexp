@@ -31,11 +31,9 @@ LABEL.registration_label {
 
 DIV.question_right {
     padding: 0 20px 0 20px;
-    margin: 0px 20px 20px 20px;
+    margin: 0 auto;
     box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
     box-sizing: border-box;
-    width: 80%;
-    float: left;
     min-height: 800px;
 }
 
@@ -67,7 +65,6 @@ DIV.inner_question_left {
 
 DIV.top_index_login_register {
     width: 800px;
-    height: 40px;
     text-align: right;
 }
 
@@ -118,8 +115,27 @@ DIV.editor_query {
 DIV.editor_bottom_nav_buttons {
     width: 250px;
     height: 100px;
-    margin: 0px 10px 10px 796px;
+    margin: 10px 10px 10px 500px;
     clear: both;
+}
+
+DIV.index_categories_container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: inherit;
+    vertical-align: baseline;
+    width: 800px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+DIV.index_categories_item {
+    display: block;
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);
+    box-sizing: inherit;
+    padding: 30px;
+    font-size: 20px;
+    margin: 10px;
 }
 
 DIV.question_bottom_nav_buttons {
@@ -140,7 +156,8 @@ DIV.right_nav_button {
 }
 
 DIV.questions_container {
-    margin: 0px 10%;
+    margin: 0px 15%;
+    max-width: 1300px;
 }
 
 LEGEND.question_title {

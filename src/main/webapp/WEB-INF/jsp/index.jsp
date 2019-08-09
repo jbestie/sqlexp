@@ -10,7 +10,6 @@
 </head>
 
 <body>
-<h1 class="main">Welcome to Sql Experience site!</h1>
 <c:set value='${sessionScope["username"]}' var="username"/>
 <div class = "top_index_login_register">
     <c:if test="${empty username}">
@@ -18,12 +17,17 @@
     </c:if>
     <c:if test="${not empty username}">
         <label>You're logged in as <b><c:out value="username"/></b></label> &nbsp; <a href="logout">Logout</a><br/>
+        <h3>Select SQL quiz category</h3>
     </c:if>
 </div>
 <c:if test="${not empty username}">
-    <c:forEach items="${categories}" var="item">
-        <li><a href="<c:url value="/questions?categoryId=${item.id}"/>"><c:out value="${item.name}"/></a></li>
-    </c:forEach>
+    <div class = "index_categories_container">
+        <c:forEach items="${categories}" var="item">
+            <div class = "index_categories_item">
+                <a href="<c:url value="/questions?categoryId=${item.id}"/>"><c:out value="${item.name}"/></a>
+            </div>
+        </c:forEach>
+    </div>
 </c:if>
 </body>
 </html>

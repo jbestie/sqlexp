@@ -93,14 +93,6 @@
 </head>
 <body>
 <div class="questions_container">
-    <div class="question_left">
-        <h5>Questions</h5>
-        <ul>
-            <c:forEach items="${tasks}" var="item" >
-                <li><a href="<c:url value="/question?questionId=${item.id}"/>"><c:out value="${item.name}"/></a></li>
-            </c:forEach>
-        </ul>
-    </div>
     <div class="question_right">
         <fieldset>
             <legend class="question_title">${task.name}</legend>
@@ -119,7 +111,7 @@
                     <input type="button" value="Run query" class="create_task_button" id="executeQuery"/>
                 </div>
                 <div class="right_nav_button">
-                    <input type="button" class="create_task_button" hidden="true" value="Next question" id="nextQuestion"/>
+                    <input type="button" class="create_task_button" hidden value="Next question" id="nextQuestion"/>
                 </div>
             </div>
         </fieldset>
