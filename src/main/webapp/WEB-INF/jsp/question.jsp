@@ -17,7 +17,7 @@
         $(document).ready(function () {
             var editor = monaco.editor.create(document.getElementById('query'), {
                 value: [
-                    "", "", "", ""
+                    "--- put your SQL query here", "", "", ""
                 ].join('\n'),
                 language: 'sql',
                 minimap: {
@@ -32,7 +32,7 @@
                     type: "GET",
                     url: "submit",
                     data: {
-                        id: $("#id").val(),
+                        id: ${task.id},
                         query: editor.getValue()
                     },
                     success: function (result) {
@@ -92,12 +92,12 @@
     <title></title>
 </head>
 <body>
-<div>
+<div class="questions_container">
     <div class="question_left">
         <h5>Questions</h5>
         <ul>
-            <c:forEach items="${questionList}" var="item" varStatus="loop">
-                <li><a href="<c:url value="/question?questionId=${loop.index + 1}"/>"><c:out value="${item}"/></a></li>
+            <c:forEach items="${tasks}" var="item" >
+                <li><a href="<c:url value="/question?questionId=${item.id}"/>"><c:out value="${item.name}"/></a></li>
             </c:forEach>
         </ul>
     </div>
@@ -105,21 +105,23 @@
         <fieldset>
             <legend class="question_title">${task.name}</legend>
             ${task.description}<br/>
-            <input type="hidden" id="id" name="id" value="1"/>
             <div>
                 <div class="inner_question_left">
                     <label for="query"></label><div id="query" class="query"></div>
                 </div>
                 <div id="queryResult" class="inner_question_right query_result"></div>
-                <br/>
                 <div class="spacer" style="clear: both;"></div>
             </div>
             <label id="error_message" class="error_message"></label><label id="success_message"
                                                                            class="success_message"></label><br/>
-            <input type="button" value="Run query" id="executeQuery"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"
-                                                                                                     class="next_question"
-                                                                                                     value="Next question"
-                                                                                                     id="nextQuestion"/>
+            <div class="question_bottom_nav_buttons">
+                <div class="left_nav_button">
+                    <input type="button" value="Run query" class="create_task_button" id="executeQuery"/>
+                </div>
+                <div class="right_nav_button">
+                    <input type="button" class="create_task_button" hidden="true" value="Next question" id="nextQuestion"/>
+                </div>
+            </div>
         </fieldset>
     </div>
 </div>

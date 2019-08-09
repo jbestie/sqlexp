@@ -46,4 +46,13 @@ public interface TaskDao {
      * @return {@link List} with all {@link Task}
      */
     List<Task> getAllTasks();
+
+    /**
+     * Retrieves the tasks by category id
+     *
+     * @param categoryId id of category to retrieve tasks
+     *
+     * @return {@link List} of {@link Task} in category
+     */
+    List<Task> getAllTasksInCategory(Long categoryId);
 }

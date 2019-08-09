@@ -31,11 +31,8 @@
         $(document).ready(function () {
             var editor = monaco.editor.create(document.getElementById('queryToExecute'), {
                 value: [
-                    <c:set var="newline" value="\n"/>
-                    <c:forEach items='${fn:split(task.query, newline)}' var="row">
-                    '<c:out value="${row}"/>',
-                    </c:forEach>
-                ].join('\n'),
+                    '${task.query}'
+                ].join(''),
                 language: 'sql',
                 minimap: {
                     enabled: false
@@ -46,6 +43,10 @@
             $('#createTask').click(function (e) {
                 $("#query").val(editor.getValue());
                 $("#task").submit();
+            });
+
+            $('#backToList').click(function (e) {
+                window.location.href = '<c:url value="/editor/"/>';
             });
 
             $('#executeQuery').click(function (e) {
@@ -131,8 +132,13 @@
     </div>
     <form:hidden path="query"/>
     <form:errors path="query"/><br/>
-    <div class="create_task_button">
-        <input type="button" value="Save task" id="createTask" class="create_task_button">
+    <div class="editor_bottom_nav_buttons">
+        <div class="left_nav_button">
+            <input type="button" value="Back" id="backToList" class="create_task_button">
+        </div>
+        <div class="right_nav_button">
+            <input type="button" value="Save task" id="createTask" class="create_task_button">
+        </div>
     </div>
 </form:form>
 </body>

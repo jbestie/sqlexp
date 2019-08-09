@@ -80,4 +80,12 @@ public class TaskServiceImpl implements TaskService {
     public void createCategory(TaskCategory taskCategory) {
         taskCategoryDao.createTaskCategory(taskCategory);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Task> getAllTasksInCategory(Long categoryId) {
+        return taskDao.getAllTasksInCategory(categoryId);
+    }
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class QuizController {
     
@@ -56,7 +58,14 @@ public class QuizController {
     public String showQuestion (@RequestParam Long questionId, Model model) {
         Task task = taskService.getTask(questionId);
         model.addAttribute("task", task);
-        model.addAttribute("questionList", service.getAllQuestionNames());
+        model.addAttribute("tasks", taskService.getAllTasksInCategory(task.getCategory()));
         return "question";
+    }
+
+    @RequestMapping(path = "/questions", method = RequestMethod.GET)
+    public String showQuestionsList (@RequestParam Long categoryId, Model model) {
+        List<Task> tasks = taskService.getAllTasksInCategory(categoryId);
+        model.addAttribute("tasks", tasks);
+        return "questions";
     }
 }

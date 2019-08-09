@@ -44,6 +44,10 @@
                 $("#task").submit();
             });
 
+            $('#backToList').click(function (e) {
+                window.location.href = '<c:url value="/editor/"/>';
+            });
+
             $('#executeQuery').click(function (e) {
                 e.preventDefault();
                 $.ajax({
@@ -100,7 +104,6 @@
             })
         });
     </script>
-    <title></title>
 </head>
 
 <body>
@@ -126,8 +129,13 @@
     </div>
     <form:hidden path="query"/>
     <form:errors path="query"/><br/>
-    <div class="create_task_button">
-        <input type="button" value="Create task" id="createTask" class="create_task_button">
+    <div class="editor_bottom_nav_buttons">
+        <div class="left_nav_button">
+            <input type="button" value="Back" id="backToList" class="create_task_button">
+        </div>
+        <div class="right_nav_button">
+            <input type="button" value="Create task" id="createTask" class="create_task_button">
+        </div>
     </div>
 </form:form>
 </body>

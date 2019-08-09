@@ -17,6 +17,7 @@ public class TaskDaoImpl implements TaskDao {
     public static final String UPDATE_TASK_QUERY = "UPDATE TASK SET category_id = :category, name = :name, description = :description, query = :query WHERE id = :id";
     public static final String SELECT_TASK_QUERY = "SELECT id, category_id, name, description, query FROM TASK WHERE id = :id";
     public static final String SELECT_ALL_TASKS_QUERY = "SELECT id, category_id, name, description, query FROM TASK ORDER BY id";
+    public static final String SELECT_ALL_TASKS_IN_CATEGORY_QUERY = "SELECT id, category_id, name, description, query FROM TASK WHERE category_id = :category ORDER BY id";
     final NamedParameterJdbcTemplate jdbcTemplate;
 
     public TaskDaoImpl(NamedParameterJdbcTemplate jdbcTemplate) {
@@ -78,7 +79,11 @@ public class TaskDaoImpl implements TaskDao {
         paramMap.put("id", id);
 
         return jdbcTemplate.queryForObject(SELECT_TASK_QUERY, paramMap, (rs, rowNum) ->
-                new Task(rs.getLong("id"), rs.getLong("category_id"), rs.getString("name"), rs.getString("description"), StringEscapeUtils.escapeEcmaScript(rs.getString("query"))));
+                new Task(rs.getLong("id"), rs.getLong("category_id"), rs.getString("name"), rs.getString("description"), preProcessQuery(rs.getString("query"))));
+    }
+
+    private String preProcessQuery(String query) {
+        return StringEscapeUtils.escapeEcmaScript(query.replaceAll("\r", ""));
     }
 
     /**
@@ -86,15 +91,28 @@ public class TaskDaoImpl implements TaskDao {
      */
     @Override
     public List<Task> getAllTasks() {
-        return jdbcTemplate.query(SELECT_ALL_TASKS_QUERY, rs -> {
+        Map <String, Object> parametersMap = new HashMap<>();
+        return getTasks(SELECT_ALL_TASKS_QUERY, parametersMap);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Task> getAllTasksInCategory(Long categoryId) {
+        Map <String, Object> parametersMap = new HashMap<>();
+        parametersMap.put("category", categoryId);
+
+        return getTasks(SELECT_ALL_TASKS_IN_CATEGORY_QUERY, parametersMap);
+    }
+
+    private List<Task> getTasks(String query, Map<String, Object> parametersMap) {
+        return jdbcTemplate.query(query, parametersMap, rs -> {
             List<Task> result = new ArrayList<>();
             while (rs.next()) {
                 result.add(new Task(rs.getLong("id"), rs.getLong("category_id"), rs.getString("name"), rs.getString("description"), rs.getString("query")));
             }
-
             return result;
         });
     }
-
-
 }
